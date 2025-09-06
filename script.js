@@ -247,8 +247,9 @@
   (function addCollageSlide(){
     const casal = IMAGE_PATHS.filter(p => /imagens\/casal\//i.test(p)).sort();
     if (!casal.length) return;
-    // Duplicamos fontes se necessário para preencher o coração
-    const MAX_TILES = Math.min(120, Math.max(48, casal.length * 2));
+    // Responsivo: menos peças no mobile para caber sem apertar
+    const isMobile = window.innerWidth <= 520;
+    const MAX_TILES = Math.min(isMobile ? 90 : 120, Math.max(isMobile ? 36 : 48, casal.length * (isMobile ? 1.5 : 2)));
 
     function heartXY(t){
       // Parametrização clássica do coração
@@ -271,13 +272,13 @@
     const xs = ptsRaw.map(p=>p.x), ys = ptsRaw.map(p=>p.y);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
     const minY = Math.min(...ys), maxY = Math.max(...ys);
-    const MARGIN = 8; // % em cada lado
-    const VSHIFT = -2; // desloca ligeiramente para cima
+    const MARGIN = isMobile ? 6 : 8; // % em cada lado
+    const VSHIFT = isMobile ? -1 : -2; // desloca ligeiramente para cima
     const pts = ptsRaw.map(p=>{
       const left = MARGIN + ((p.x - minX)/(maxX-minX))*(100 - 2*MARGIN);
       const top = MARGIN + (1- (p.y - minY)/(maxY-minY))*(100 - 2*MARGIN) + VSHIFT;
-      const jx = (Math.random() - 0.5) * 1.6;
-      const jy = (Math.random() - 0.5) * 1.6;
+      const jx = (Math.random() - 0.5) * (isMobile ? 1.2 : 1.6);
+      const jy = (Math.random() - 0.5) * (isMobile ? 1.2 : 1.6);
       return { left: Math.max(2, Math.min(98, left + jx)), top: Math.max(2, Math.min(98, top + jy)) };
     });
 
