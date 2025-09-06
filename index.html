@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apresentação - José Paulo Palheta Melo</title>
+  <meta name="description" content="Apresentação interativa de José Paulo Palheta Melo" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">JP</span>
+        <span class="brand-text">Apresentação</span>
+      </div>
+      <div class="progress" aria-label="Progresso">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <button id="audioToggle" class="btn btn-ghost" aria-label="Alternar som" title="Som">🔈</button>
+    </header>
+
+    <main class="deck" id="deck" tabindex="0" aria-live="polite">
+      <!-- Slides serão injetados via JS -->
+    </main>
+
+    <footer class="bottombar">
+      <div class="hint" id="hint">Use ← → ou toque para navegar</div>
+      <div class="controls">
+        <button id="prevBtn" class="btn" aria-label="Anterior">←</button>
+        <span id="counter" class="counter" aria-live="polite">1/1</span>
+        <button id="nextBtn" class="btn" aria-label="Próximo">→</button>
+      </div>
+    </footer>
+
+    <div id="startOverlay" class="overlay" role="dialog" aria-modal="true">
+      <div class="overlay-card">
+        <h1>Bem-vinda, sogra! 👋</h1>
+        <p>Vamos começar com aquele tom sério, caprichado. Depois a gente dá uma leveza, só o ouro. 😉</p>
+        <button id="startBtn" class="btn btn-primary">Bora começar</button>
+        <p class="overlay-hint">Dica: use as setas do teclado ou deslize no celular</p>
+      </div>
+    </div>
+
+    <canvas id="fxCanvas" class="fx-canvas" aria-hidden="true"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
